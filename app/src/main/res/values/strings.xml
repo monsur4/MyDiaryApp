@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyDiary</string>
+    <string name="add_title">Add title</string>
+    <string name="add_content">Add content</string>
+    <string name="save">Save</string>
+    <string name="sign_in_to_your_account">Sign in to your Account</string>
+    <string name="sign_out">Sign Out</string>
+</resources>
