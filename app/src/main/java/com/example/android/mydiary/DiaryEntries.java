@@ -6,6 +6,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -15,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.android.mydiary.database.AppDatabase;
 import com.example.android.mydiary.database.DiaryEntry;
@@ -99,8 +102,20 @@ public class DiaryEntries extends AppCompatActivity implements DiaryAdapter.Item
         if (id == R.id.action_sign_out){
             //make a call to firebase sign out if the sign out options was clicked
             FirebaseAuth.getInstance().signOut();
+            finish();
+        }else if (id == android.R.id.home) {
+            //exit the application when the back button or the action bar back navigator is pressed
+            onBackPressed();
+            return true;
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
